@@ -1,0 +1,20 @@
+version: '3.4'
+
+services:
+  servicesdb:
+    container_name: servicesdb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      -  mongo_data:/data/db
+
+  services.api:
+    container_name: services.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://servicesdb:27017"
+    depends_on:
+      - servicesdb
+    ports:
+      - "8000:80"

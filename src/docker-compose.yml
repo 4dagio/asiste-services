@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  servicesdb:
+    image: mongo
+
+  services.api:
+    image: ${DOCKER_REGISTRY-}servicesapi
+    build:
+      context: .
+      dockerfile: Services/Services.API/Dockerfile
+
+volumes:
+  mongo_data:
