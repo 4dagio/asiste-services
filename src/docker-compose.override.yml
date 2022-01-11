@@ -17,4 +17,4 @@ services:
     depends_on:
       - servicesdb
     ports:
-      - "5000:5000"
+      - "8000:80"
